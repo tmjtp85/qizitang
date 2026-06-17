@@ -1,1 +1,0 @@
-"C:\Program Files\MySQL\MySQL Server 9.7\bin\mysql.exe" -u root -e "SHOW VARIABLES LIKE 'port';"
