@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hanzi-Writer 测试</title>
+</head>
+<body>
+    <h1>Hanzi-Writer 快速测试</h1>
+    <div id="anim-box" style="width:200px; height:200px; border:1px solid #333;"></div>
+    <button onclick="testAnim()">点击测试动画</button>
+    <div id="status"></div>
+
+    <script src="/assets/index-DLMLno5b.js"></script>
+    <script>
+        let writer;
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM加载完成');
+            document.getElementById('status').textContent = '正在加载hanzi-writer...';
+            
+            // 尝试直接从node_modules加载或从window检查
+            const script = document.createElement('script');
+            script.src = 'https://unpkg.com/hanzi-writer@3.5.0/dist/hanzi-writer.min.js';
+            script.onload = () => {
+                console.log('Hanzi-Writer 已加载');
+                console.log('window.HanziWriter:', window.HanziWriter);
+                document.getElementById('status').textContent = 'Hanzi-Writer 已加载，点击按钮测试';
+                
+                // 自动测试
+                setTimeout(testAnim, 500);
+            };
+            script.onerror = (e) => {
+                console.error('加载失败', e);
+                document.getElementById('status').textContent = '加载失败';
+            };
+            document.body.appendChild(script);
+        });
+
+        function testAnim() {
+            if (!window.HanziWriter) {
+                document.getElementById('status').textContent = 'HanziWriter未加载';
+                return;
+            }
+            
+            console.log('创建HanziWriter实例');
+            writer = window.HanziWriter.create('anim-box', '人', {
+                width: 200,
+                height: 200,
+                padding: 20,
+                strokeColor: '#333',
+                showOutline: true,
+                showCharacter: false,
+                delayBetweenStrokes: 300,
+                strokeAnimationSpeed: 1,
+            });
+            
+            console.log('开始动画');
+            document.getElementById('status').textContent = '正在播放动画...';
+            writer.animateCharacter();
+        }
+    </script>
+</body>
+</html>

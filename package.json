@@ -1,0 +1,22 @@
+{
+  "name": "qizitang",
+  "version": "1.0.0",
+  "description": "启字堂 · 一年级识字学习网页",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "install": "cd frontend && npm install && cd ../backend && npm install",
+    "vercel-build": "cd frontend && npm run build"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "sql.js": "^1.14.1",
+    "uuid": "^9.0.0"
+  }
+}

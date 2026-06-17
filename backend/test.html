@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>启字堂服务器测试</title>
+    <style>
+        body { font-family: 'Microsoft YaHei', Arial, sans-serif; margin: 0; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .container { max-width: 800px; margin: 0 auto; background: rgba(255,255,255,0.95); color: #333; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .header { text-align: center; margin-bottom: 30px; }
+        .success { color: #28a745; font-weight: bold; font-size: 24px; display: block; margin: 15px 0; }
+        .info { background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 15px 0; }
+        .test-buttons { display: flex; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
+        button { background: #007bff; color: white; padding: 12px 20px; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; }
+        button:hover { background: #0056b3; }
+        .status { font-family: monospace; background: #e9ecef; padding: 10px; border-radius: 5px; margin: 10px 0; }
+        .timestamp { color: #6c757d; font-style: italic; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎉 启字堂服务器测试</h1>
+            <p class="success">✅ 请直接在浏览器中打开此文件</p>
+        </div>
+        
+        <div class="info">
+            <h3>📊 测试说明:</h3>
+            <p>🔧 服务器正在运行在端口 3000</p>
+            <p>🌐 请访问: http://127.0.0.1:3000</p>
+            <p>📊 如果无法访问，请检查:</p>
+            <ul>
+                <li>浏览器代理设置</li>
+                <li>防火墙配置</li>
+                <li>尝试使用不同的浏览器</li>
+            </ul>
+        </div>
+        
+        <div class="test-buttons">
+            <button onclick="testConnection()">🔧 测试连接</button>
+            <button onclick="showHelp()">💡 帮助</button>
+        </div>
+        
+        <div id="result" style="display: none; margin: 20px 0; padding: 15px; background: #e9ecef; border-radius: 8px;">
+            <h4>测试结果:</h4>
+            <div id="content"></div>
+        </div>
+        
+        <div id="help" style="display: none; margin: 20px 0; padding: 15px; background: #e9ecef; border-radius: 8px;">
+            <h4>📋 访问帮助:</h4>
+            <p>✅ 服务器已成功启动</p>
+            <p>✅ TCP 连接正常</p>
+            <p>✅ HTTP 响应正常</p>
+            <p>🔧 如果仍然无法访问，请检查:</p>
+            <ul>
+                <li>浏览器代理设置</li>
+                <li>防火墙配置</li>
+                <li>尝试使用不同的浏览器</li>
+                <li>清除浏览器缓存</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        function testConnection() {
+            const result = document.getElementById('result');
+            const content = document.getElementById('content');
+            result.style.display = 'block';
+            
+            content.innerHTML = '<p>🌐 测试中...</p>';
+            
+            fetch('http://127.0.0.1:3000')
+                .then(response => {
+                    if (response.ok) {
+                        return response.text();
+                    }
+                    throw new Error('服务器响应异常');
+                })
+                .then(data => {
+                    content.innerHTML = '<p class="success">✅ 连接成功!</p><p>服务器响应: ' + data + '</p>';
+                })
+                .catch(error => {
+                    content.innerHTML = '<p class="error">❌ 连接失败: ' + error.message + '</p>';
+                });
+        }
+        
+        function showHelp() {
+            const help = document.getElementById('help');
+            help.style.display = help.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>
