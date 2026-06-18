@@ -3,40 +3,7 @@
   "framework": "vite",
   "buildCommand": "cd frontend && npm run build",
   "outputDirectory": "frontend/dist",
-  "functions": {
-    "api/**/*.js": {
-      "runtime": "@vercel/node@3"
-    }
-  },
   "routes": [
-    {
-      "src": "/api/health",
-      "dest": "/api/health.js"
-    },
-    {
-      "src": "/api/characters",
-      "dest": "/api/characters.js"
-    },
-    {
-      "src": "/api/characters/random",
-      "dest": "/api/characters/random.js"
-    },
-    {
-      "src": "/api/characters/(.*)",
-      "dest": "/api/characters/[id].js?id=$1"
-    },
-    {
-      "src": "/api/device/register",
-      "dest": "/api/device/register.js"
-    },
-    {
-      "src": "/api/learning",
-      "dest": "/api/learning/index.js"
-    },
-    {
-      "src": "/api/stats",
-      "dest": "/api/stats/index.js"
-    },
     {
       "src": "/(.*)",
       "dest": "/"
