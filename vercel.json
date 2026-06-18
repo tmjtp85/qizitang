@@ -1,12 +1,5 @@
 {
   "version": 2,
-  "framework": "vite",
   "buildCommand": "cd frontend && npm run build",
-  "outputDirectory": "frontend/dist",
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/"
-    }
-  ]
+  "outputDirectory": "frontend/dist"
 }
