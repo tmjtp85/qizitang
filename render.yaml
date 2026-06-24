@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: qizitang-backend
+    runtime: node
+    plan: free
+    region: singapore
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && node app.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+    disk:
+      name: data
+      mountPath: /data
+      sizeGB: 1

@@ -2,7 +2,8 @@ const initSqlJs = require('sql.js');
 const fs = require('fs');
 const path = require('path');
 
-const dbPath = path.join(__dirname, 'qizitang.db');
+const dataDir = process.env.DATA_DIR || __dirname;
+const dbPath = path.join(dataDir, 'qizitang.db');
 let db;
 
 async function initDB() {

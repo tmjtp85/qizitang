@@ -47,7 +47,7 @@
 <script setup>
 import { ref, onMounted, watch, nextTick } from 'vue'
 import { useAppStore } from '../store/app'
-import { charAPI, learningAPI, getTTSUrl } from '../api'
+import { charAPI, learningAPI } from '../api'
 
 const app = useAppStore()
 const canvasRef = ref(null)
@@ -205,8 +205,14 @@ async function submitCheck() {
 
 function playAudio() {
   if (charData.value) {
-    const audio = new Audio(getTTSUrl(charData.value.char, app.speechSpeed))
-    audio.play()
+    try {
+      const u = new SpeechSynthesisUtterance(charData.value.char)
+      u.lang = 'zh-CN'
+      u.rate = app.speechSpeed || 1
+      speechSynthesis.speak(u)
+    } catch (e) {
+      console.log('语音播放失败:', e.message)
+    }
   }
 }
 
