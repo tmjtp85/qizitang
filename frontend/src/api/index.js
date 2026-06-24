@@ -1,4 +1,4 @@
-const BASE = 'http://localhost:8080/api'
+const BASE = 'https://qizitang-backend.onrender.com/api'
 
 async function request(url, options = {}) {
   try {
